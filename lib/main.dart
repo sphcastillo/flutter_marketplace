@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp_nov/screens/home_page.dart';
 
 // MyApp() is a StatelessWidget that returns a MaterialApp widget
 // StatelessWidget is a widget that doesn't change its state
@@ -28,10 +29,15 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: "Sophia's First Flutter App"),
+      // home: const MyHomePage(title: "Sophia's First Flutter App"),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+      },
+      debugShowCheckedModeBanner: false, // Disable the debug banner
     );
   }
 }
@@ -55,8 +61,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
