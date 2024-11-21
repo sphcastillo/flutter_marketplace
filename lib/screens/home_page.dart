@@ -19,8 +19,8 @@ class HomePage extends StatelessWidget {
           children: [
             Widget_buildHeroSection(),
             Widget_buildCarouselSection(),
-            Widget_buildGallerySection()
-            // _buildFooter(),
+            Widget_buildGallerySection(),
+            Widget_buildFooter(),
           ],
         )));
   }
@@ -49,10 +49,63 @@ Widget_buildHeroSection() {
 }
 
 Widget_buildCarouselSection() {
-  // Carousel implementation
-  return Container(height: 150, color: Colors.blue[450]);
+  return SizedBox(
+      height: 150,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 5, // Replace with the number of products
+        itemBuilder: (context, index) {
+          return Container(
+              width: 120,
+              margin: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.image, size: 50, color: Colors.grey),
+                    Text('Product ${index + 1}'),
+                  ]));
+        },
+      ));
 }
 
 Widget_buildGallerySection() {
-  return Container(height: 300, color: Colors.grey[200]);
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 8.0,
+        mainAxisSpacing: 8.0,
+      ),
+      itemCount: 6, // Replace with your product count
+      itemBuilder: (context, index) {
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Center(
+            child: Text('Product ${index + 1}'),
+          ),
+        );
+      },
+    ),
+  );
+}
+
+Widget_buildFooter() {
+  return Container(
+      color: Colors.grey[800],
+      padding: const EdgeInsets.all(16.0),
+      child: const Center(
+          child: Text(
+        '© 2024 Sophia\'s Marketplace - All Rights Reserved',
+        style: TextStyle(color: Colors.white),
+      )));
 }
