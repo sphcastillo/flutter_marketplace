@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp_nov/screens/product_detail_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -85,13 +86,33 @@ Widget_buildGallerySection() {
       ),
       itemCount: 6, // Replace with your product count
       itemBuilder: (context, index) {
-        return Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[200],
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Center(
-            child: Text('Product ${index + 1}'),
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProductDetailPage(productIndex: index),
+                ));
+          },
+          child: AnimatedContainer(
+            duration: const Duration(microseconds: 200),
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(8.0),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3))
+              ],
+            ),
+            child: Center(
+              child: Hero(
+                tag: 'product_$index',
+                child: Icon(Icons.image, size: 50, color: Colors.grey),
+              ),
+            ),
           ),
         );
       },
