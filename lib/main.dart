@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp_nov/screens/home_page.dart';
+import 'screens/catalog_page.dart';
 
 // MyApp() is a StatelessWidget that returns a MaterialApp widget
 // StatelessWidget is a widget that doesn't change its state
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
+        '/catalog': (context) => const CatalogPage(),
       },
       debugShowCheckedModeBanner: false, // Disable the debug banner
     );

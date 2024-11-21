@@ -103,9 +103,31 @@ Widget_buildFooter() {
   return Container(
       color: Colors.grey[800],
       padding: const EdgeInsets.all(16.0),
-      child: const Center(
-          child: Text(
-        '© 2024 Sophia\'s Marketplace - All Rights Reserved',
-        style: TextStyle(color: Colors.white),
-      )));
+      child: Column(children: [
+        const Text(
+          'Follow Us',
+          style: TextStyle(color: Colors.orange, fontSize: 16),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.facebook, color: Colors.white),
+              onPressed: () => print('Go to Facebook'),
+            ),
+            // IconButton(
+            //   icon: const Icon(Icons.instagram, color: Colors.white),
+            //   onPressed: () => print('Go to Instagram'),
+            // ),
+            IconButton(
+                icon: const Icon(Icons.tiktok, color: Colors.white),
+                onPressed: () => print('Go to Tiktok'))
+          ],
+        ),
+        const SizedBox(height: 8),
+        const Text(
+          '© 2024 Sophia\'s Marketplace - All Rights Reserved',
+          style: TextStyle(color: Colors.white),
+        )
+      ]));
 }
