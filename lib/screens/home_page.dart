@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp_nov/screens/product_detail_page.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,6 +15,33 @@ class HomePage extends StatelessWidget {
             IconButton(icon: const Icon(Icons.shopping_cart), onPressed: () {}),
           ],
         ),
+        drawer: Drawer(
+            child: ListView(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blueGrey,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+            ),
+            ListTile(
+                leading: const Icon(Icons.home),
+                title: const Text('Home'),
+                onTap: () {
+                  Navigator.pop(context); // Closes the drawer
+                }),
+            ListTile(
+              leading: const Icon(Icons.list),
+              title: const Text('Catalog'),
+              onTap: () {
+                Navigator.pushNamed(context, '/catalog');
+              },
+            )
+          ],
+        )),
         body: SingleChildScrollView(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,27 +78,39 @@ Widget_buildHeroSection() {
 }
 
 Widget_buildCarouselSection() {
-  return SizedBox(
-      height: 150,
+  return Container(
+    height: 150,
+    margin: const EdgeInsets.symmetric(vertical: 32.0),
+    padding: const EdgeInsets.symmetric(vertical: 16.0),
+    decoration: BoxDecoration(
+      color: Colors.red[100],
+      border: Border.all(color: Colors.black, width: 2.0),
+    ),
+    child: Center(
       child: ListView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 50),
         scrollDirection: Axis.horizontal,
         itemCount: 5, // Replace with the number of products
         itemBuilder: (context, index) {
           return Container(
-              width: 120,
-              margin: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.image, size: 50, color: Colors.grey),
-                    Text('Product ${index + 1}'),
-                  ]));
+            width: 120,
+            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.image, size: 50, color: Colors.grey),
+                Text('Product ${index + 1}'),
+              ],
+            ),
+          );
         },
-      ));
+      ),
+    ),
+  );
 }
 
 Widget_buildGallerySection() {
@@ -136,10 +176,10 @@ Widget_buildFooter() {
               icon: const Icon(Icons.facebook, color: Colors.white),
               onPressed: () => print('Go to Facebook'),
             ),
-            // IconButton(
-            //   icon: const Icon(Icons.instagram, color: Colors.white),
-            //   onPressed: () => print('Go to Instagram'),
-            // ),
+            IconButton(
+              icon: FaIcon(FontAwesomeIcons.instagram, color: Colors.white),
+              onPressed: () => print('Go to Instagram'),
+            ),
             IconButton(
                 icon: const Icon(Icons.tiktok, color: Colors.white),
                 onPressed: () => print('Go to Tiktok'))
